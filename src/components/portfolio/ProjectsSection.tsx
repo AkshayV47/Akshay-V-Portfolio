@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useRef, useCallback } from "react";
-import { ExternalLink, Github, Linkedin, Play, Volume2, VolumeX } from "lucide-react";
+import { ExternalLink, Github, Linkedin, Play } from "lucide-react";
 import satelliteImg from "@/assets/satellite-project.jpg";
 import endoscopicImg from "@/assets/endoscopic-project.jpg";
 import pocketAgliImg from "@/assets/pocket-agli-project.jpg";
