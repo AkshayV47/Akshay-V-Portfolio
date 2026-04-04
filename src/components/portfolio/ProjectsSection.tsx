@@ -12,6 +12,8 @@ const endoscopicVideos = [
   "https://github.com/AkshayV47/Smart-Endoscopic-Pipe-Moniter/raw/main/WhatsApp%20Video%202025-10-02%20at%201.45.27%20PM.mp4",
 ];
 
+const airGestureVideos = ["/videos/smart-home-gesture.mp4"];
+
 interface Project {
   title: string;
   subtitle: string;
@@ -65,6 +67,7 @@ const projects: Project[] = [
     tags: ["IoT", "Gesture", "Embedded"],
     image: airGestureImg,
     expandable: true,
+    videos: airGestureVideos,
     linkedinUrl: "https://www.linkedin.com/posts/akshay-v-3b589b28a_smartabrhome-innovation-iotabrproject-activity-7304354807312457729-OMF0?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEZBJXkBw-rBOloJ_VzdKgwBeuFGdc9b-Qc",
   },
   {
