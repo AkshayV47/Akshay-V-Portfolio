@@ -12,7 +12,7 @@ const endoscopicVideos = [
   "https://github.com/AkshayV47/Smart-Endoscopic-Pipe-Moniter/raw/main/WhatsApp%20Video%202025-10-02%20at%201.45.27%20PM.mp4",
 ];
 
-const airGestureVideos = ["/videos/smart-home-gesture.mp4", "/videos/smart-home-gesture-2.mp4"];
+const airGestureVideos = ["/videos/smart-home-gesture.mp4"];
 
 interface Project {
   title: string;
