@@ -1,10 +1,10 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useRef, useCallback } from "react";
-import { ExternalLink, Github, Linkedin, Play } from "lucide-react";
+import { ExternalLink, Github, Linkedin, Play, ChevronLeft, ChevronRight } from "lucide-react";
 import satelliteImg from "@/assets/satellite-project.jpg";
 import endoscopicImg from "@/assets/endoscopic-project.jpg";
 import pocketAgliImg from "@/assets/pocket-agli-project.jpg";
-import virtualMouseImg from "@/assets/virtual-mouse-project.jpg";
+import airGestureImg from "@/assets/air-gesture-project.jpg";
 
 const endoscopicVideos = [
   "https://github.com/AkshayV47/Smart-Endoscopic-Pipe-Moniter/raw/main/Video.mp4",
@@ -61,8 +61,11 @@ const projects: Project[] = [
     title: "Smart Air Gesture Home Automation",
     subtitle: "Gesture Control System",
     description: "A home automation system that controls appliances using air gestures for touchless interaction.",
+    expandedDescription: "This smart home automation system uses computer vision and gesture recognition to enable touchless control of household appliances. By detecting specific hand gestures through a camera module, users can turn on/off lights, fans, and other devices without physical contact. The system integrates ESP32 with relay modules for wireless appliance control, making everyday interactions more hygienic and futuristic.",
     tags: ["IoT", "Gesture", "Embedded"],
-    image: virtualMouseImg,
+    image: airGestureImg,
+    expandable: true,
+    linkedinUrl: "https://www.linkedin.com/posts/akshay-v-3b589b28a_smartabrhome-innovation-iotabrproject-activity-7304354807312457729-OMF0?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEZBJXkBw-rBOloJ_VzdKgwBeuFGdc9b-Qc",
   },
   {
     title: "Geo-Transport Monitoring",
@@ -76,13 +79,34 @@ const projects: Project[] = [
 const VideoPlayer = ({ videos }: { videos: string[] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
   const handleEnded = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % videos.length);
   }, [videos.length]);
 
+  const goNext = () => setCurrentIndex((prev) => (prev + 1) % videos.length);
+  const goPrev = () => setCurrentIndex((prev) => (prev - 1 + videos.length) % videos.length);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    touchEndX.current = e.changedTouches[0].clientX;
+    const diff = touchStartX.current - touchEndX.current;
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? goNext() : goPrev();
+    }
+  };
+
   return (
-    <div className="relative rounded-xl overflow-hidden border border-border bg-background">
+    <div
+      className="relative rounded-xl overflow-hidden border border-border bg-background"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       <video
         ref={videoRef}
         key={videos[currentIndex]}
@@ -93,6 +117,24 @@ const VideoPlayer = ({ videos }: { videos: string[] }) => {
         onEnded={handleEnded}
         className="w-full aspect-[9/16] max-h-[500px] object-contain mx-auto bg-black"
       />
+      {/* Navigation arrows */}
+      {videos.length > 1 && (
+        <>
+          <button
+            onClick={(e) => { e.stopPropagation(); goPrev(); }}
+            className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-background/70 border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+          <button
+            onClick={(e) => { e.stopPropagation(); goNext(); }}
+            className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-background/70 border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </>
+      )}
+      {/* Dot indicators */}
       <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
         {videos.map((_, idx) => (
           <button
