@@ -79,13 +79,34 @@ const projects: Project[] = [
 const VideoPlayer = ({ videos }: { videos: string[] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
   const handleEnded = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % videos.length);
   }, [videos.length]);
 
+  const goNext = () => setCurrentIndex((prev) => (prev + 1) % videos.length);
+  const goPrev = () => setCurrentIndex((prev) => (prev - 1 + videos.length) % videos.length);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    touchEndX.current = e.changedTouches[0].clientX;
+    const diff = touchStartX.current - touchEndX.current;
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? goNext() : goPrev();
+    }
+  };
+
   return (
-    <div className="relative rounded-xl overflow-hidden border border-border bg-background">
+    <div
+      className="relative rounded-xl overflow-hidden border border-border bg-background"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       <video
         ref={videoRef}
         key={videos[currentIndex]}
@@ -96,6 +117,24 @@ const VideoPlayer = ({ videos }: { videos: string[] }) => {
         onEnded={handleEnded}
         className="w-full aspect-[9/16] max-h-[500px] object-contain mx-auto bg-black"
       />
+      {/* Navigation arrows */}
+      {videos.length > 1 && (
+        <>
+          <button
+            onClick={(e) => { e.stopPropagation(); goPrev(); }}
+            className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-background/70 border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+          <button
+            onClick={(e) => { e.stopPropagation(); goNext(); }}
+            className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-background/70 border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </>
+      )}
+      {/* Dot indicators */}
       <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
         {videos.map((_, idx) => (
           <button
