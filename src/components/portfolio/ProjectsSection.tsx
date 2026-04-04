@@ -1,10 +1,10 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useRef, useCallback } from "react";
-import { ExternalLink, Github, Linkedin, Play } from "lucide-react";
+import { ExternalLink, Github, Linkedin, Play, ChevronLeft, ChevronRight } from "lucide-react";
 import satelliteImg from "@/assets/satellite-project.jpg";
 import endoscopicImg from "@/assets/endoscopic-project.jpg";
 import pocketAgliImg from "@/assets/pocket-agli-project.jpg";
-import virtualMouseImg from "@/assets/virtual-mouse-project.jpg";
+import airGestureImg from "@/assets/air-gesture-project.jpg";
 
 const endoscopicVideos = [
   "https://github.com/AkshayV47/Smart-Endoscopic-Pipe-Moniter/raw/main/Video.mp4",
