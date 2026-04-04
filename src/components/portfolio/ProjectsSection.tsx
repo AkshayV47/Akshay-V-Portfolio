@@ -75,7 +75,6 @@ const projects: Project[] = [
 
 const VideoPlayer = ({ videos }: { videos: string[] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleEnded = useCallback(() => {
@@ -89,27 +88,19 @@ const VideoPlayer = ({ videos }: { videos: string[] }) => {
         key={videos[currentIndex]}
         src={videos[currentIndex]}
         autoPlay
-        muted={isMuted}
+        muted
         playsInline
         onEnded={handleEnded}
-        className="w-full aspect-video object-cover"
+        className="w-full aspect-[9/16] max-h-[500px] object-contain mx-auto bg-black"
       />
-      <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
-        <div className="flex gap-1.5">
-          {videos.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={(e) => { e.stopPropagation(); setCurrentIndex(idx); }}
-              className={`w-2 h-2 rounded-full transition-all ${idx === currentIndex ? "bg-primary w-5" : "bg-foreground/30"}`}
-            />
-          ))}
-        </div>
-        <button
-          onClick={(e) => { e.stopPropagation(); setIsMuted(!isMuted); }}
-          className="p-1.5 rounded-full bg-background/70 backdrop-blur-sm text-foreground hover:bg-background transition-colors"
-        >
-          {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-        </button>
+      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+        {videos.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={(e) => { e.stopPropagation(); setCurrentIndex(idx); }}
+            className={`w-2 h-2 rounded-full transition-all ${idx === currentIndex ? "bg-primary w-5" : "bg-foreground/30"}`}
+          />
+        ))}
       </div>
     </div>
   );
