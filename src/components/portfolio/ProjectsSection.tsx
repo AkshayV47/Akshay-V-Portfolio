@@ -61,8 +61,11 @@ const projects: Project[] = [
     title: "Smart Air Gesture Home Automation",
     subtitle: "Gesture Control System",
     description: "A home automation system that controls appliances using air gestures for touchless interaction.",
+    expandedDescription: "This smart home automation system uses computer vision and gesture recognition to enable touchless control of household appliances. By detecting specific hand gestures through a camera module, users can turn on/off lights, fans, and other devices without physical contact. The system integrates ESP32 with relay modules for wireless appliance control, making everyday interactions more hygienic and futuristic.",
     tags: ["IoT", "Gesture", "Embedded"],
-    image: virtualMouseImg,
+    image: airGestureImg,
+    expandable: true,
+    linkedinUrl: "https://www.linkedin.com/posts/akshay-v-3b589b28a_smartabrhome-innovation-iotabrproject-activity-7304354807312457729-OMF0?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEZBJXkBw-rBOloJ_VzdKgwBeuFGdc9b-Qc",
   },
   {
     title: "Geo-Transport Monitoring",
