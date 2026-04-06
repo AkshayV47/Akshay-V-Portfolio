@@ -75,13 +75,6 @@ const projects: Project[] = [
     videos: airGestureVideos,
     linkedinUrl: "https://www.linkedin.com/posts/akshay-v-3b589b28a_smartabrhome-innovation-iotabrproject-activity-7304354807312457729-OMF0?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEZBJXkBw-rBOloJ_VzdKgwBeuFGdc9b-Qc",
   },
-  {
-    title: "Geo-Transport Monitoring",
-    subtitle: "Patent ID: 2021097501",
-    description: "A GPS-based tag system for tracking exported goods and detecting losses during transportation.",
-    tags: ["GPS", "IoT", "Patent"],
-    image: null,
-  },
 ];
 
 const VideoPlayer = ({ videos }: { videos: string[] }) => {

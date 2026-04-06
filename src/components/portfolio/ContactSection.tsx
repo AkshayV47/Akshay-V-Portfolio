@@ -54,11 +54,7 @@ const ContactSection = () => {
           })}
         </div>
 
-        <div className="mt-16 text-center text-sm text-muted-foreground/50 pb-8">
-          <p className="flex items-center justify-center gap-1">
-            Built with <Heart size={12} className="text-primary" /> by Akshay V
-          </p>
-        </div>
+        <div className="mt-16 pb-8" />
       </motion.div>
     </section>
   );

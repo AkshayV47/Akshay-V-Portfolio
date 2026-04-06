@@ -16,9 +16,9 @@ const experiences = [
   },
   {
     role: "NASA Young Scientist",
-    company: "NASA Young Scientist for a Day",
+    company: "NASA — Young Scientist for a Day",
     period: "2020 – 2021",
-    description: "Selected for NASA's Young Scientist program, contributing research on satellite miniaturization.",
+    description: "Collaborated with NASA on research into Uranus' moons, using image‑based datasets to identify surface features and anomalies for a team paper on celestial body characterization.",
   },
 ];
 
