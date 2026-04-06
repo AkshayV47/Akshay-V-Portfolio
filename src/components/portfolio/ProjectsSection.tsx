@@ -297,12 +297,54 @@ const ProjectsSection = () => {
                           </a>
                         )}
                       </div>
+
+                      {/* See more link */}
+                      {(project.githubUrl || project.linkedinUrl) && (
+                        <div className="mt-3 pt-3 border-t border-border/50">
+                          <a
+                            href={project.githubUrl || project.linkedinUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="inline-flex items-center gap-1.5 text-sm text-primary hover:text-primary/80 font-medium transition-colors"
+                          >
+                            See more <ExternalLink className="w-3.5 h-3.5" />
+                          </a>
+                        </div>
+                      )}
                     </div>
                   </motion.div>
                 )}
               </AnimatePresence>
             </motion.div>
           ))}
+        </div>
+
+        {/* Patents Section */}
+        <div className="mt-12">
+          <h3 className="text-xl font-bold mb-4">Patents 📜</h3>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="rounded-2xl border border-border bg-card/50 hover:border-primary/30 hover:bg-card p-5 transition-all duration-300"
+          >
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                <span className="text-lg">📄</span>
+              </div>
+              <div>
+                <h4 className="text-base font-semibold text-foreground">Geo-Transport Monitoring</h4>
+                <p className="text-sm text-primary font-mono">Patent ID: 2021097501</p>
+                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">A GPS-based tag system for tracking exported goods and detecting losses during transportation.</p>
+                <div className="flex flex-wrap gap-1.5 mt-2">
+                  <span className="text-[11px] px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground">GPS</span>
+                  <span className="text-[11px] px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground">IoT</span>
+                  <span className="text-[11px] px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground">Patent</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </motion.div>
     </section>

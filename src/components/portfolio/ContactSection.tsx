@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, MapPin, Phone, Heart } from "lucide-react";
+import { Github, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 
 const contacts = [
   { icon: Mail, label: "Email", value: "itzakshay2005@gmail.com", href: "mailto:itzakshay2005@gmail.com" },
