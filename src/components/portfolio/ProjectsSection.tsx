@@ -37,6 +37,10 @@ const projects: Project[] = [
     tags: ["Space Tech", "Hardware", "Innovation"],
     image: satelliteImg,
     highlight: true,
+    recordLinks: [
+      { label: "Kalam's World Records", url: "https://www.kalamsworldrecords.com/worlds-smallest-lightest-first-wooden-femto-category-satellite/" },
+      { label: "International Book of Records", url: "https://www.internationalbookofrecords.com/records/smallest-and-lightest-wooden-femto-category-satellite/" },
+    ],
   },
   {
     title: "Pocket AGLI",
