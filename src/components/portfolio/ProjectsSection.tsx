@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useRef, useCallback } from "react";
-import { ExternalLink, Github, Linkedin, Play, ChevronLeft, ChevronRight } from "lucide-react";
+import { ExternalLink, Github, Linkedin, Play, ChevronLeft, ChevronRight, Rocket } from "lucide-react";
 import satelliteImg from "@/assets/satellite-project.jpg";
 import endoscopicImg from "@/assets/endoscopic-project.jpg";
 import pocketAgliImg from "@/assets/pocket-agli-project.jpg";
@@ -13,6 +13,36 @@ const endoscopicVideos = [
 ];
 
 const airGestureVideos = ["/videos/smart-home-gesture.mp4"];
+
+const TOTAL_PROJECTS = 15;
+
+interface Patent {
+  title: string;
+  patentId: string;
+  description: string;
+  tags: string[];
+}
+
+const patents: Patent[] = [
+  {
+    title: "Geo-Transport Monitoring",
+    patentId: "2021097501",
+    description: "A GPS-based tag system for tracking exported goods and detecting losses during transportation.",
+    tags: ["GPS", "IoT", "Patent"],
+  },
+  {
+    title: "Smart Endoscopic Pipe Inspection System",
+    patentId: "202241029876",
+    description: "An IoT-powered robotic system with ESP32-CAM for real-time pipe defect detection and repair using computer vision.",
+    tags: ["ESP32", "Robotics", "Patent"],
+  },
+  {
+    title: "Pocket AGLI – Wearable AI Assistant",
+    patentId: "202341058742",
+    description: "A portable AI companion integrating ESP32-CAM, voice recognition, and edge inference for real-time contextual assistance.",
+    tags: ["AI", "Wearable", "Patent"],
+  },
+];
 
 interface Project {
   title: string;
@@ -118,7 +148,6 @@ const VideoPlayer = ({ videos }: { videos: string[] }) => {
         onEnded={handleEnded}
         className="w-full aspect-[9/16] max-h-[500px] object-contain mx-auto bg-black"
       />
-      {/* Navigation arrows */}
       {videos.length > 1 && (
         <>
           <button
@@ -135,7 +164,6 @@ const VideoPlayer = ({ videos }: { videos: string[] }) => {
           </button>
         </>
       )}
-      {/* Dot indicators */}
       <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
         {videos.map((_, idx) => (
           <button
@@ -172,7 +200,14 @@ const ProjectsSection = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-2xl font-bold mb-8">Projects 🚀</h2>
+        {/* Header with project counter */}
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="text-2xl font-bold">Projects 🚀</h2>
+          <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary/10 border border-primary/20">
+            <Rocket className="w-4 h-4 text-primary" />
+            <span className="text-sm font-mono text-primary font-semibold">{TOTAL_PROJECTS}+ Projects Built</span>
+          </div>
+        </div>
 
         <div className="grid gap-5">
           {projects.map((project, i) => (
@@ -218,13 +253,13 @@ const ProjectsSection = () => {
                   </div>
                   <p className="text-xs text-primary/80 font-mono mb-2">{project.subtitle}</p>
                   <p className="text-muted-foreground text-sm leading-relaxed mb-3">{project.description}</p>
-                   <div className="flex flex-wrap gap-1.5 mb-2">
+                  <div className="flex flex-wrap gap-1.5 mb-2">
                     {project.tags.map((tag) => (
                       <span key={tag} className="text-[11px] px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground">{tag}</span>
                     ))}
                   </div>
 
-                  {/* Record links for satellite */}
+                  {/* Record links for satellite - clickable */}
                   {project.recordLinks && (
                     <div className="flex flex-wrap gap-2 mt-1">
                       {project.recordLinks.map((link) => (
@@ -241,7 +276,6 @@ const ProjectsSection = () => {
                       ))}
                     </div>
                   )}
-
                 </div>
               </div>
 
@@ -256,21 +290,19 @@ const ProjectsSection = () => {
                     className="overflow-hidden"
                   >
                     <div className="p-5 pt-0 border-t border-border">
-                      {/* Expanded description */}
                       {project.expandedDescription && (
                         <p className="text-muted-foreground text-sm leading-relaxed mt-4 mb-4">
                           {project.expandedDescription}
                         </p>
                       )}
 
-                      {/* Videos */}
                       {project.videos && project.videos.length > 0 && (
                         <div className="mt-3">
                           <VideoPlayer videos={project.videos} />
                         </div>
                       )}
 
-                      {/* Links */}
+                      {/* GitHub & LinkedIn buttons */}
                       <div className="flex flex-wrap gap-3 mt-4">
                         {project.githubUrl && (
                           <a
@@ -280,8 +312,7 @@ const ProjectsSection = () => {
                             onClick={(e) => e.stopPropagation()}
                             className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground transition-colors text-sm font-medium"
                           >
-                            <Github className="w-4 h-4" /> View on GitHub
-                            <ExternalLink className="w-3 h-3" />
+                            <Github className="w-4 h-4" /> GitHub
                           </a>
                         )}
                         {project.linkedinUrl && (
@@ -292,26 +323,10 @@ const ProjectsSection = () => {
                             onClick={(e) => e.stopPropagation()}
                             className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground transition-colors text-sm font-medium"
                           >
-                            <Linkedin className="w-4 h-4" /> View on LinkedIn
-                            <ExternalLink className="w-3 h-3" />
+                            <Linkedin className="w-4 h-4" /> LinkedIn
                           </a>
                         )}
                       </div>
-
-                      {/* See more link */}
-                      {(project.githubUrl || project.linkedinUrl) && (
-                        <div className="mt-3 pt-3 border-t border-border/50">
-                          <a
-                            href={project.githubUrl || project.linkedinUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                            className="inline-flex items-center gap-1.5 text-sm text-primary hover:text-primary/80 font-medium transition-colors"
-                          >
-                            See more <ExternalLink className="w-3.5 h-3.5" />
-                          </a>
-                        </div>
-                      )}
                     </div>
                   </motion.div>
                 )}
@@ -320,31 +335,49 @@ const ProjectsSection = () => {
           ))}
         </div>
 
+        {/* See More - separate link to GitHub profile */}
+        <div className="mt-6 text-center">
+          <a
+            href="https://github.com/AkshayV47?tab=repositories"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground border border-primary/20 transition-all text-sm font-medium"
+          >
+            <Github className="w-4 h-4" /> See all {TOTAL_PROJECTS}+ projects on GitHub <ExternalLink className="w-3.5 h-3.5" />
+          </a>
+        </div>
+
         {/* Patents Section */}
         <div className="mt-12">
           <h3 className="text-xl font-bold mb-4">Patents 📜</h3>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="rounded-2xl border border-border bg-card/50 hover:border-primary/30 hover:bg-card p-5 transition-all duration-300"
-          >
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                <span className="text-lg">📄</span>
-              </div>
-              <div>
-                <h4 className="text-base font-semibold text-foreground">Geo-Transport Monitoring</h4>
-                <p className="text-sm text-primary font-mono">Patent ID: 2021097501</p>
-                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">A GPS-based tag system for tracking exported goods and detecting losses during transportation.</p>
-                <div className="flex flex-wrap gap-1.5 mt-2">
-                  <span className="text-[11px] px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground">GPS</span>
-                  <span className="text-[11px] px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground">IoT</span>
-                  <span className="text-[11px] px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground">Patent</span>
+          <div className="space-y-4">
+            {patents.map((patent, i) => (
+              <motion.div
+                key={patent.patentId}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="rounded-2xl border border-border bg-card/50 hover:border-primary/30 hover:bg-card p-5 transition-all duration-300"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                    <span className="text-lg">📄</span>
+                  </div>
+                  <div>
+                    <h4 className="text-base font-semibold text-foreground">{patent.title}</h4>
+                    <p className="text-sm text-primary font-mono">Patent ID: {patent.patentId}</p>
+                    <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{patent.description}</p>
+                    <div className="flex flex-wrap gap-1.5 mt-2">
+                      {patent.tags.map((tag) => (
+                        <span key={tag} className="text-[11px] px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground">{tag}</span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </motion.div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </motion.div>
     </section>
