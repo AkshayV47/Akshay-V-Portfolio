@@ -2,24 +2,34 @@ import { motion } from "framer-motion";
 
 const skillCategories = [
   {
-    title: "Languages",
+    title: "Programming",
     emoji: "💻",
-    skills: ["Python", "C", "Java", "Embedded C", "MATLAB"],
+    skills: ["C", "Java", "Python", "MATLAB", "SQL"],
   },
   {
     title: "AI & ML",
     emoji: "🧠",
-    skills: ["OpenCV", "TensorFlow", "Computer Vision", "NLP", "Self-learning AI"],
+    skills: ["OpenCV", "Machine Learning", "Computer Vision", "AI Integration"],
   },
   {
-    title: "Hardware & IoT",
+    title: "Core / Hardware",
     emoji: "🔧",
-    skills: ["ESP32", "STM32", "Raspberry Pi", "Arduino", "RTOS", "ArduPilot"],
+    skills: ["Circuit Design", "HM & SMD Soldering", "Microcontroller Programming", "Embedded Systems", "RTOS", "Raspberry Pi", "STM32", "Arduino", "ESP Series", "ATmega328P"],
   },
   {
-    title: "Tools & Platforms",
-    emoji: "⚡",
-    skills: ["Git", "Linux", "Fusion 360", "MATLAB/Simulink", "Keil uVision"],
+    title: "Area of Interest",
+    emoji: "🎯",
+    skills: ["Embedded Systems Development", "IoT", "AI in Electronics", "AI-Powered Apps", "Real-Time Systems & Automation"],
+  },
+  {
+    title: "Key Strengths",
+    emoji: "💪",
+    skills: ["Leadership", "Public Speaking", "Problem Solving"],
+  },
+  {
+    title: "Languages",
+    emoji: "🌐",
+    skills: ["English — Proficient", "Tamil — Native", "Kannada — Fluent"],
   },
 ];
 
