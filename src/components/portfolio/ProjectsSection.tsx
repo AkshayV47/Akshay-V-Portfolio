@@ -26,6 +26,7 @@ interface Project {
   videos?: string[];
   githubUrl?: string;
   linkedinUrl?: string;
+  recordLinks?: { label: string; url: string }[];
 }
 
 const projects: Project[] = [
