@@ -218,11 +218,29 @@ const ProjectsSection = () => {
                   </div>
                   <p className="text-xs text-primary/80 font-mono mb-2">{project.subtitle}</p>
                   <p className="text-muted-foreground text-sm leading-relaxed mb-3">{project.description}</p>
-                  <div className="flex flex-wrap gap-1.5">
+                   <div className="flex flex-wrap gap-1.5 mb-2">
                     {project.tags.map((tag) => (
                       <span key={tag} className="text-[11px] px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground">{tag}</span>
                     ))}
                   </div>
+
+                  {/* Record links for satellite */}
+                  {project.recordLinks && (
+                    <div className="flex flex-wrap gap-2 mt-1">
+                      {project.recordLinks.map((link) => (
+                        <a
+                          key={link.url}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex items-center gap-1.5 text-xs text-primary hover:text-primary/80 underline underline-offset-2 transition-colors"
+                        >
+                          <ExternalLink className="w-3 h-3" /> {link.label}
+                        </a>
+                      ))}
+                    </div>
+                  )
                 </div>
               </div>
 
