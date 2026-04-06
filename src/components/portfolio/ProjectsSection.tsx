@@ -26,6 +26,7 @@ interface Project {
   videos?: string[];
   githubUrl?: string;
   linkedinUrl?: string;
+  recordLinks?: { label: string; url: string }[];
 }
 
 const projects: Project[] = [
@@ -36,6 +37,10 @@ const projects: Project[] = [
     tags: ["Space Tech", "Hardware", "Innovation"],
     image: satelliteImg,
     highlight: true,
+    recordLinks: [
+      { label: "Kalam's World Records", url: "https://www.kalamsworldrecords.com/worlds-smallest-lightest-first-wooden-femto-category-satellite/" },
+      { label: "International Book of Records", url: "https://www.internationalbookofrecords.com/records/smallest-and-lightest-wooden-femto-category-satellite/" },
+    ],
   },
   {
     title: "Pocket AGLI",
@@ -69,13 +74,6 @@ const projects: Project[] = [
     expandable: true,
     videos: airGestureVideos,
     linkedinUrl: "https://www.linkedin.com/posts/akshay-v-3b589b28a_smartabrhome-innovation-iotabrproject-activity-7304354807312457729-OMF0?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEZBJXkBw-rBOloJ_VzdKgwBeuFGdc9b-Qc",
-  },
-  {
-    title: "Geo-Transport Monitoring",
-    subtitle: "Patent ID: 2021097501",
-    description: "A GPS-based tag system for tracking exported goods and detecting losses during transportation.",
-    tags: ["GPS", "IoT", "Patent"],
-    image: null,
   },
 ];
 
@@ -220,11 +218,30 @@ const ProjectsSection = () => {
                   </div>
                   <p className="text-xs text-primary/80 font-mono mb-2">{project.subtitle}</p>
                   <p className="text-muted-foreground text-sm leading-relaxed mb-3">{project.description}</p>
-                  <div className="flex flex-wrap gap-1.5">
+                   <div className="flex flex-wrap gap-1.5 mb-2">
                     {project.tags.map((tag) => (
                       <span key={tag} className="text-[11px] px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground">{tag}</span>
                     ))}
                   </div>
+
+                  {/* Record links for satellite */}
+                  {project.recordLinks && (
+                    <div className="flex flex-wrap gap-2 mt-1">
+                      {project.recordLinks.map((link) => (
+                        <a
+                          key={link.url}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex items-center gap-1.5 text-xs text-primary hover:text-primary/80 underline underline-offset-2 transition-colors"
+                        >
+                          <ExternalLink className="w-3 h-3" /> {link.label}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+
                 </div>
               </div>
 
@@ -280,12 +297,54 @@ const ProjectsSection = () => {
                           </a>
                         )}
                       </div>
+
+                      {/* See more link */}
+                      {(project.githubUrl || project.linkedinUrl) && (
+                        <div className="mt-3 pt-3 border-t border-border/50">
+                          <a
+                            href={project.githubUrl || project.linkedinUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="inline-flex items-center gap-1.5 text-sm text-primary hover:text-primary/80 font-medium transition-colors"
+                          >
+                            See more <ExternalLink className="w-3.5 h-3.5" />
+                          </a>
+                        </div>
+                      )}
                     </div>
                   </motion.div>
                 )}
               </AnimatePresence>
             </motion.div>
           ))}
+        </div>
+
+        {/* Patents Section */}
+        <div className="mt-12">
+          <h3 className="text-xl font-bold mb-4">Patents 📜</h3>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="rounded-2xl border border-border bg-card/50 hover:border-primary/30 hover:bg-card p-5 transition-all duration-300"
+          >
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                <span className="text-lg">📄</span>
+              </div>
+              <div>
+                <h4 className="text-base font-semibold text-foreground">Geo-Transport Monitoring</h4>
+                <p className="text-sm text-primary font-mono">Patent ID: 2021097501</p>
+                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">A GPS-based tag system for tracking exported goods and detecting losses during transportation.</p>
+                <div className="flex flex-wrap gap-1.5 mt-2">
+                  <span className="text-[11px] px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground">GPS</span>
+                  <span className="text-[11px] px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground">IoT</span>
+                  <span className="text-[11px] px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground">Patent</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </motion.div>
     </section>

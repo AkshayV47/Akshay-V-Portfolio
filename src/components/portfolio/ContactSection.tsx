@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, MapPin, Phone, Heart } from "lucide-react";
+import { Github, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 
 const contacts = [
   { icon: Mail, label: "Email", value: "itzakshay2005@gmail.com", href: "mailto:itzakshay2005@gmail.com" },
@@ -54,11 +54,7 @@ const ContactSection = () => {
           })}
         </div>
 
-        <div className="mt-16 text-center text-sm text-muted-foreground/50 pb-8">
-          <p className="flex items-center justify-center gap-1">
-            Built with <Heart size={12} className="text-primary" /> by Akshay V
-          </p>
-        </div>
+        <div className="mt-16 pb-8" />
       </motion.div>
     </section>
   );
