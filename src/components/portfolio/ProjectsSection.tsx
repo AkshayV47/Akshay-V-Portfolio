@@ -240,7 +240,8 @@ const ProjectsSection = () => {
                         </a>
                       ))}
                     </div>
-                  )
+                  )}
+
                 </div>
               </div>
 
