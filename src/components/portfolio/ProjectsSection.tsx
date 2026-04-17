@@ -42,6 +42,18 @@ const patents: Patent[] = [
     description: "A GPS-based monitoring and scheduling system for tracking transport vehicles, managing logistics, and detecting losses during transportation.",
     tags: ["GPS", "IoT", "Patent"],
   },
+  {
+    title: "Smart Air Gesture Home Automation System",
+    patentId: "202541060714",
+    description: "A touchless home automation system that uses computer vision and gesture recognition to control household appliances through hand gestures in the air.",
+    tags: ["Gesture", "IoT", "Patent"],
+  },
+  {
+    title: "An Intelligent E-Waste Detection System and Collection Using Hybrid Routing Techniques",
+    patentId: "202441097531",
+    description: "An intelligent system for detecting and collecting e-waste using hybrid routing techniques to optimize collection efficiency and promote sustainable waste management.",
+    tags: ["AI", "Sustainability", "Patent"],
+  },
 ];
 
 interface Project {
