@@ -41,11 +41,6 @@ const patents: Patent[] = [
     patentId: "2021097501",
     description: "A GPS-based monitoring and scheduling system for tracking transport vehicles, managing logistics, and detecting losses during transportation.",
     tags: ["GPS", "IoT", "Patent"],
-  {
-    title: "Geo-Transport Monitoring and Scheduling System",
-    patentId: "2021097501",
-    description: "A GPS-based monitoring and scheduling system for tracking transport vehicles, managing logistics, and detecting losses during transportation.",
-    tags: ["GPS", "IoT", "Patent"],
   },
   {
     title: "Smart Air Gesture Home Automation System",
