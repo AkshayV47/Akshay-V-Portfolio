@@ -25,22 +25,22 @@ interface Patent {
 
 const patents: Patent[] = [
   {
-    title: "Geo-Transport Monitoring",
+    title: "Smart Campus Attendance Monitoring System",
+    patentId: "2021092766",
+    description: "An automated attendance monitoring system designed for smart campuses, leveraging IoT and embedded technologies for accurate, real-time student tracking.",
+    tags: ["IoT", "Embedded", "Patent"],
+  },
+  {
+    title: "STMS - Smart Trash Management System",
+    patentId: "2021097531",
+    description: "An IoT-based smart trash management system that monitors waste levels and optimizes collection routes for efficient urban sanitation.",
+    tags: ["IoT", "Smart City", "Patent"],
+  },
+  {
+    title: "Geo-Transport Monitoring and Scheduling System",
     patentId: "2021097501",
-    description: "A GPS-based tag system for tracking exported goods and detecting losses during transportation.",
+    description: "A GPS-based monitoring and scheduling system for tracking transport vehicles, managing logistics, and detecting losses during transportation.",
     tags: ["GPS", "IoT", "Patent"],
-  },
-  {
-    title: "Smart Endoscopic Pipe Inspection System",
-    patentId: "202241029876",
-    description: "An IoT-powered robotic system with ESP32-CAM for real-time pipe defect detection and repair using computer vision.",
-    tags: ["ESP32", "Robotics", "Patent"],
-  },
-  {
-    title: "Pocket AGLI – Wearable AI Assistant",
-    patentId: "202341058742",
-    description: "A portable AI companion integrating ESP32-CAM, voice recognition, and edge inference for real-time contextual assistance.",
-    tags: ["AI", "Wearable", "Patent"],
   },
 ];
 
